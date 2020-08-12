@@ -29,7 +29,7 @@ html{
     background-image: url("./Assets/playerDown.png");
 }
 
-#playerScore {
+#textContainer {
     text-align: center;
 }
 

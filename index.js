@@ -3,7 +3,8 @@
 //edge://surf/
 
 const playerCharacter = document.getElementById("playerCharacter");
-let intervalLeft, intervalDown, intervalRight,intervalUp, traps;
+const score=document.getElementById("score");
+let intervalLeft, intervalDown, intervalRight,intervalUp, traps, gameScore;
 
 function lose() {//stworzyć straty życia
     for (let i = 0; i < traps.length; i++) {
@@ -41,6 +42,8 @@ function levelWin() {
                 traps = document.getElementsByClassName("traps");
                 traps = [...traps];
             }
+            gameScore=traps.length-40;
+            score.innerHTML="Score "+gameScore;
         }
     }
 }
