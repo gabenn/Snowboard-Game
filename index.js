@@ -42,8 +42,8 @@ function levelWin() {
                 traps = document.getElementsByClassName("traps");
                 traps = [...traps];
             }
-            gameScore=traps.length-40;
-            score.innerHTML="Score "+gameScore;
+            gameScore=traps.length-40;;
+            score.innerHTML="Score "+gameScore;;
         }
     }
 }
