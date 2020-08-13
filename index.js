@@ -6,8 +6,9 @@ const playerCharacter = document.getElementById("playerCharacter");
 const score=document.getElementById("score");
 let  highScore, intervalLeft, intervalDown, intervalRight,intervalUp, traps, gameScore;
 
-highScore=window.localStorage.getItem('highScoreLS');
-
+highScore=parseInt(localStorage.getItem('highScoreLS'))
+console.log(highScore)
+gameScore=0;
 function lose() {
     for (let i = 0; i < traps.length; i++) {//hitboxes (Ik they sucks sometimes)
         if (traps[i].offsetTop < playerCharacter.offsetTop+16 &&
@@ -15,13 +16,11 @@ function lose() {
             traps[i].offsetLeft < playerCharacter.offsetLeft+16 &&
             traps[i].offsetLeft > playerCharacter.offsetLeft-60
         ) {
-            console.log("lose");
             if(highScore== undefined || highScore<gameScore)
             {
-                window.localStorage.setItem('highScoreLS', gameScore);
-
+                localStorage.setItem('highScoreLS', gameScore);
             }
-            alert("High Score: "+window.localStorage.getItem('highScoreLS')+"\n Score: "+ gameScore);
+            alert("High Score: "+localStorage.getItem('highScoreLS')+"\n Score: "+ gameScore);
             
             location.reload();
         }
