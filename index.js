@@ -23,7 +23,7 @@ function lose() {
             }
             alert("High Score: "+window.localStorage.getItem('highScoreLS')+"\n Score: "+ gameScore)
             
-            // location.reload();
+            location.reload();
         }
     }
 }
