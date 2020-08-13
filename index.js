@@ -6,10 +6,10 @@ const playerCharacter = document.getElementById("playerCharacter");
 const score=document.getElementById("score");
 let intervalLeft, intervalDown, intervalRight,intervalUp, traps, gameScore;
 
-function lose() {//stworzyć straty życia
-    for (let i = 0; i < traps.length; i++) {
+function lose() {
+    for (let i = 0; i < traps.length; i++) {//hitboxes (Ik they sucks sometimes)
         if (traps[i].offsetTop < playerCharacter.offsetTop+16 &&
-            traps[i].offsetTop > playerCharacter.offsetTop-32 &&
+            traps[i].offsetTop > playerCharacter.offsetTop-26 &&
             traps[i].offsetLeft < playerCharacter.offsetLeft+16 &&
             traps[i].offsetLeft > playerCharacter.offsetLeft-60
         ) {
@@ -23,7 +23,7 @@ function usingDeveloperFunction(){
 }
 function levelWin() {
     for (let i = 0; i < traps.length; i++) {
-        if (traps[i].offsetTop < 0) {
+        if (traps[i].offsetTop < 0) {//changing position after trap is unvisible
             traps[i].style.top = `${Math.floor(Math.random() * window.innerHeight)+600}px`;
             trapX = Math.floor(Math.random() * window.innerWidth);
             while (trapX < 65 || trapX > innerWidth - 65) {
@@ -42,7 +42,7 @@ function levelWin() {
                 traps = document.getElementsByClassName("traps");
                 traps = [...traps];
             }
-            gameScore=traps.length-40;;
+            gameScore=traps.length-40;;//score
             score.innerHTML="Score "+gameScore;;
         }
     }
@@ -134,7 +134,7 @@ let trapX, trapY, treeTrap;
 
 function init() {
     for (let i = 0; i < 40; i++) {// Traps quantity
-
+        
         trapX = Math.floor(Math.random() * window.innerWidth);
         while (trapX < 65 || trapX > innerWidth - 65) {
             trapX = Math.floor(Math.random() * window.innerWidth);
@@ -143,6 +143,7 @@ function init() {
         while (trapY < window.innerHeight * 0.5) {
             trapY = Math.floor(Math.random() * window.innerHeight);
         }
+        // trap creating
         treeTrap = document.createElement('div');
         treeTrap.className = "traps";
         treeTrap.id = "deadTree";
@@ -152,6 +153,7 @@ function init() {
         treeTrap.style.backgroundImage = "url('assets/deadTree.png')";
         document.body.appendChild(treeTrap);
     }
+    //making trap Array
     traps = document.getElementsByClassName("traps");
     traps = [...traps];
 }
