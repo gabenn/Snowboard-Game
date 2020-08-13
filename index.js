@@ -18,10 +18,10 @@ function lose() {
             console.log("lose");
             if(highScore== undefined || highScore<gameScore)
             {
-                window.localStorage.setItem('highScoreLS', gameScore)
+                window.localStorage.setItem('highScoreLS', gameScore);
 
             }
-            alert("High Score: "+window.localStorage.getItem('highScoreLS')+"\n Score: "+ gameScore)
+            alert("High Score: "+window.localStorage.getItem('highScoreLS')+"\n Score: "+ gameScore);
             
             location.reload();
         }
