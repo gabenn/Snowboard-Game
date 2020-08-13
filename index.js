@@ -5,7 +5,9 @@
 const playerCharacter = document.getElementById("playerCharacter");
 const score=document.getElementById("score");
 let  highScore, intervalLeft, intervalDown, intervalRight,intervalUp, traps, gameScore;
-
+if(localStorage.getItem('highScoreLS')== undefined){
+    localStorage.setItem('highScoreLS',0)
+}
 highScore=parseInt(localStorage.getItem('highScoreLS'))
 console.log(highScore)
 gameScore=0;
