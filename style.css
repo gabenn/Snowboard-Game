@@ -7,7 +7,6 @@
 html{
     width: 100vw;
     height: 100vh;
-    background-image: url("./Assets/background.png");
     overflow:hidden;
 }
 #gameBackground {
@@ -16,7 +15,6 @@ html{
     height: 100vh;
     top: 0;
     left: 0;
-    /* background-image: url("./Assets/background.png"); */
     z-index: -1000;
 }
 
