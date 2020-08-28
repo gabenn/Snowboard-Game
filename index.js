@@ -1,11 +1,8 @@
 const playerCharacter = document.getElementById("playerCharacter");
 const score = document.getElementById("score");
-const leftArrow= document.getElementById("leftArrow")
-const downArrow= document.getElementById("downArrow")
-const rightArrow= document.getElementById("rightArrow")
 let highScore, intervalLeft, intervalDown, intervalRight, intervalUp, traps, gameScore;
 
-if (localStorage.getItem('highScoreLS') == (undefined || null)) localStorage.setItem('highScoreLS', 0); 
+if (localStorage.getItem('highScoreLS') == undefined) localStorage.setItem('highScoreLS', 0); 
 
 highScore = parseInt(localStorage.getItem('highScoreLS'))
 gameScore = 0;
@@ -44,7 +41,7 @@ function levelWin() {
 
             if (i % traps.length == 0) createTrap(); // adding new element after "level win"
 
-            gameScore = traps.length - 10; //score 
+            gameScore = traps.length - 40;; //score
             score.innerHTML = `Score ${gameScore}`;
         }
     }
@@ -62,7 +59,6 @@ function moveUp() { //"dev" function :D
 }
 
 function moveDown() {
-    clearIntervals();
     intervalDown =
         setInterval(function () {
             for (let i = 0; i < traps.length; i++) {
@@ -74,7 +70,6 @@ function moveDown() {
 }
 
 function moveRight() {
-    clearIntervals();
     intervalRight =
         setInterval(function () {
             for (let i = 0; i < traps.length; i++) {
@@ -87,7 +82,6 @@ function moveRight() {
 }
 
 function moveLeft() {
-    clearIntervals();
     intervalLeft =
         setInterval(function () {
             for (let i = 0; i < traps.length; i++) {
@@ -131,16 +125,19 @@ document.addEventListener("keydown", function (event) {
         usingDevFunction();
     }
     if (event.keyCode == 37 || event.keyCode == 65) { //left
+        clearIntervals();
         moveLeft();
         playerCharacter.style.backgroundImage = 'url("./assets/playerLeft.png")';
     }
 
-    if (event.keyCode == 39 || event.keyCode == 68) { //righ
+    if (event.keyCode == 39 || event.keyCode == 68) { //right
+        clearIntervals();
         moveRight();
         playerCharacter.style.backgroundImage = 'url("./assets/playerRight.png")';
     }
 
     if (event.keyCode == 40 || event.keyCode == 83) { //down
+        clearIntervals();
         moveDown();
         playerCharacter.style.backgroundImage = 'url("./assets/playerDown.png")';
     }
@@ -149,7 +146,7 @@ document.addEventListener("keydown", function (event) {
 let trapX, trapY, treeTrap;
 
 function init() {
-    for (let i = 0; i < 10; i++) { // Traps quantity
+    for (let i = 0; i < 40; i++) { // Traps quantity
 
         trapX = Math.floor(Math.random() * window.innerWidth);
 
