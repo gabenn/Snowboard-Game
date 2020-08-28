@@ -1,7 +1,3 @@
-// https://codepen.io/carpenumidium/pen/vNNzyG
-// animacja backgroundu?
-//edge://surf/
-
 const playerCharacter = document.getElementById("playerCharacter");
 const score = document.getElementById("score");
 let highScore, intervalLeft, intervalDown, intervalRight, intervalUp, traps, gameScore;
