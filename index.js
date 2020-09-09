@@ -1,26 +1,29 @@
+//
 const playerCharacter = document.getElementById("playerCharacter");
 const score = document.getElementById("score");
 let highScore, intervalLeft, intervalDown, intervalRight, intervalUp, traps, gameScore;
 
-if (localStorage.getItem('highScoreLS') == undefined) localStorage.setItem('highScoreLS', 0); 
+if (localStorage.getItem('highScoreLS') == undefined) localStorage.setItem('highScoreLS', 0);
 
 highScore = parseInt(localStorage.getItem('highScoreLS'))
 gameScore = 0;
 
 function lose() {
-    for (let i = 0; i < traps.length; i++) { //hitboxes (Ik they sucks sometimes)
-        if (traps[i].offsetTop < playerCharacter.offsetTop + 16 &&
-            traps[i].offsetTop > playerCharacter.offsetTop - 24 &&
-            traps[i].offsetLeft < playerCharacter.offsetLeft + 24 &&
-            traps[i].offsetLeft > playerCharacter.offsetLeft - 60
+    traps.forEach(trap => {
+        //hitboxes (Ik they sucks sometimes)
+        if (trap.offsetTop < playerCharacter.offsetTop + 16 &&
+            trap.offsetTop > playerCharacter.offsetTop - 24 &&
+            trap.offsetLeft < playerCharacter.offsetLeft + 24 &&
+            trap.offsetLeft > playerCharacter.offsetLeft - 60
         ) {
-            if (highScore == undefined || highScore < gameScore)localStorage.setItem('highScoreLS', gameScore); 
+            if (highScore == undefined || highScore < gameScore) localStorage.setItem('highScoreLS', gameScore);
 
             clearIntervals();
             alert(`High Score: ${localStorage.getItem('highScoreLS')}\nScore: ${gameScore}`);
             location.reload();
         }
-    }
+
+    });
 }
 
 function usingDevFunction() {
@@ -51,46 +54,46 @@ function moveUp() { //"dev" function :D
     intervalUp =
         setInterval(function () {
             for (let i = 0; i < traps.length; i++) {
-                traps[i].style.top = `${traps[i].offsetTop+2}px`;
+                traps[i].style.top = `${traps[i].offsetTop+3}px`;
             }
             lose();
             levelWin();
-        }, 10)
+        }, 15)
 }
 
 function moveDown() {
     intervalDown =
         setInterval(function () {
             for (let i = 0; i < traps.length; i++) {
-                traps[i].style.top = `${traps[i].offsetTop-2}px`;
+                traps[i].style.top = `${traps[i].offsetTop-3}px`;
             }
             lose();
             levelWin();
-        }, 10)
+        }, 15)
 }
 
 function moveRight() {
     intervalRight =
         setInterval(function () {
             for (let i = 0; i < traps.length; i++) {
-                traps[i].style.top = `${traps[i].offsetTop-2}px`;
-                traps[i].style.left = `${traps[i].offsetLeft-2}px`;
+                traps[i].style.top = `${traps[i].offsetTop-3}px`;
+                traps[i].style.left = `${traps[i].offsetLeft-3}px`;
             }
             lose();
             levelWin();
-        }, 10)
+        }, 15)
 }
 
 function moveLeft() {
     intervalLeft =
         setInterval(function () {
             for (let i = 0; i < traps.length; i++) {
-                traps[i].style.top = `${traps[i].offsetTop-2}px`;
-                traps[i].style.left = `${traps[i].offsetLeft+2}px`;
+                traps[i].style.top = `${traps[i].offsetTop-3}px`;
+                traps[i].style.left = `${traps[i].offsetLeft+3}px`;
             }
             lose();
             levelWin();
-        }, 10)
+        }, 15)
 }
 
 function clearIntervals() { //"dev" function :D   
@@ -162,9 +165,3 @@ function init() {
     }
 }
 init();
-
-// TO DO:
-// Lives
-// Adding trap after "win level" Done?
-// Optimize 
-// Refactor
