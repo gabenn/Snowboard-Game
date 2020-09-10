@@ -26,10 +26,6 @@ function lose() {
     });
 }
 
-function usingDevFunction() {
-    console.log("Dont be cheater. Dont use dev functions");
-}
-
 function levelWin() {
     for (let i = 0; i < traps.length; i++) {
         if (traps[i].offsetTop < 0) { //changing position when trap is unvisible 
@@ -101,6 +97,10 @@ function clearIntervals() { //"dev" function :D
     clearInterval(intervalRight);
     clearInterval(intervalLeft);
     clearInterval(intervalUp);
+}
+
+function usingDevFunction() {
+    console.log("Dont be cheater. Dont use dev functions");
 }
 
 function createTrap() {
