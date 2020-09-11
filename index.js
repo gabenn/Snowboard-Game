@@ -52,6 +52,7 @@
                 modalBox.style.zIndex = 3;
                 modalHighScore.value = localStorage.getItem('highScoreLS');
                 modalScore.value = gameScore;
+                document.removeEventListener('keydown',listeners);
                 // alert(`High Score: ${localStorage.getItem('highScoreLS')}\nScore: ${gameScore}`);
                 // location.reload();
             }
@@ -123,7 +124,7 @@
     function usingDevFunction() {
         console.log("Dont be cheater. Dont use dev functions");
     }
-    document.addEventListener("keydown", (e) => {
+    const listeners =(e) => {
         if (e.key == " ") { //space
             if (prodMode === true) {
                 clearIntervals();
@@ -157,7 +158,9 @@
             playerCharacter.style.backgroundImage = `url("${playerDown}")`;
             favIcon.href = playerDown;
         }
-    })
+    }
+    document.addEventListener("keydown",listeners) 
+    
 
 
 
