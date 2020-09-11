@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snowboard</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="assets/playerRight.png">
+    <link id="favIcon" rel="icon" href="assets/playerRight.png">
     <script src="index.js" defer></script>
 </head>
 
@@ -19,6 +19,16 @@
     </div>
     <div id="playerCharacter"></div>
     <div id="testBox"></div>
+    <div class="modalBox">
+        <h2 class="modalHeader">SNOWBOARD GAME</h2>
+        <div class="modalScore">
+            <h4 class="modalText">Highscore:</label>
+            <input type="text" class="modalInputText" id="modalHighScore" placeholder="0" disabled>
+            <h4 class="modalText">Score:</h4>
+            <input type="text" class="modalInputText" id="modalScore" placeholder="0" disabled>    
+        </div>
+        <input type="button" class="modalPlay" value="" onclick="location.reload()">
+    </div>
 </body>
 
 </html>
