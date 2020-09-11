@@ -49,12 +49,12 @@
                 if (highScore == undefined || highScore < gameScore) localStorage.setItem('highScoreLS', gameScore);
 
                 clearIntervals();
-                modalBox.style.zIndex = 3;
-                modalHighScore.value = localStorage.getItem('highScoreLS');
-                modalScore.value = gameScore;
-                document.removeEventListener('keydown',listeners);
-                // alert(`High Score: ${localStorage.getItem('highScoreLS')}\nScore: ${gameScore}`);
-                // location.reload();
+                setTimeout(() => {
+                    modalBox.style.zIndex = 3;
+                    modalHighScore.value = localStorage.getItem('highScoreLS');
+                    modalScore.value = gameScore;
+                }, 500);
+                document.removeEventListener('keydown', listeners);
             }
         }
     }
@@ -121,10 +121,11 @@
         clearInterval(intervalLeft);
         clearInterval(intervalUp);
     }
+
     function usingDevFunction() {
         console.log("Dont be cheater. Dont use dev functions");
     }
-    const listeners =(e) => {
+    const listeners = (e) => {
         if (e.key == " ") { //space
             if (prodMode === true) {
                 clearIntervals();
@@ -159,8 +160,8 @@
             favIcon.href = playerDown;
         }
     }
-    document.addEventListener("keydown",listeners) 
-    
+    document.addEventListener("keydown", listeners)
+
 
 
 
