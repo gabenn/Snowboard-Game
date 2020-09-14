@@ -102,3 +102,9 @@ h1 {
     margin-top: 20px;
     margin-bottom: 100px;
 }
+.modalFooter{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}

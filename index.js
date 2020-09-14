@@ -10,6 +10,7 @@
     const modalBox = document.querySelector(".modalBox");
     const modalHighScore = document.querySelector("#modalHighScore");
     const modalScore = document.querySelector("#modalScore");
+    const modalPlay = document.querySelector(".modalPlay");
     //variables
     const traps = [];
     const intervalTime = 15;
@@ -54,6 +55,11 @@
                     modalHighScore.value = localStorage.getItem('highScoreLS');
                     modalScore.value = gameScore;
                 }, 500);
+                document.addEventListener("keydown",(e)=>{
+                    if(e.key="Enter"){
+                        location.reload();
+                    }
+                });
                 document.removeEventListener('keydown', listeners);
             }
         }
@@ -161,7 +167,7 @@
         }
     }
     document.addEventListener("keydown", listeners)
-
+    
 
 
 
