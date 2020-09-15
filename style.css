@@ -60,7 +60,7 @@ h1 {
 
     z-index: -3;
 
-    background: lightblue;
+    background: rgb(173, 216, 230);
 
     text-align: center;
     
@@ -103,8 +103,21 @@ h1 {
     margin-bottom: 100px;
 }
 .modalFooter{
+    display: flex;
+    flex-direction: column;
     position: absolute;
     bottom: 0;
+    height: 100px;
+    width: 200px;
     left: 50%;
+    justify-content: center;
+    text-align: center;
     transform: translateX(-50%);
+}
+.githubIcon{
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    background: url("./assets/githubIcon.png");
+    transform: translate(-50%, -50%);
 }
