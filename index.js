@@ -15,7 +15,7 @@
     const traps = [];
     const intervalTime = 15;
     const moveLength = 3;
-    const prodMode = true;
+    const prodMode = false;
     const trapsStart = 40;
     let gameScore = 0;
     //intervals
