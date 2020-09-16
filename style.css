@@ -121,3 +121,9 @@ h1 {
     background: url("./assets/githubIcon.png");
     transform: translate(-50%, -50%);
 }
+.bonusPoints{
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    z-index: 1;
+}

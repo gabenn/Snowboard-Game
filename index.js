@@ -3,21 +3,25 @@
     const playerDown = './assets/playerDown.png';
     const playerLeft = './assets/playerLeft.png';
     const playerRight = './assets/playerRight.png';
-    //
+    //DOM
     const favIcon = document.querySelector("#favIcon");
     const playerCharacter = document.querySelector("#playerCharacter");
     const score = document.querySelector("#score");
+    //modals
     const modalBox = document.querySelector(".modalBox");
     const modalHighScore = document.querySelector("#modalHighScore");
     const modalScore = document.querySelector("#modalScore");
     const modalPlay = document.querySelector(".modalPlay");
-    //variables
+    //arrays
     const traps = [];
+    const bonusPoints = [];
+    //variables
     const intervalTime = 15;
     const moveLength = 3;
     const prodMode = false;
     const trapsStart = 40;
     let gameScore = 0;
+    let bonusGameScore=0
     //intervals
     let intervalLeft, intervalDown, intervalRight, intervalUp;
 
@@ -36,10 +40,14 @@
 
                 if (traps[traps.length - 1].offsetTop < 20) {
                     createTrap(trapXY[0], trapXY[1]); // adding new element after "win"
-                    gameScore = traps.length - trapsStart; //score
-                    score.innerHTML = `Score ${gameScore}`;
+                    
+                    if (gameScore > 10) {
+                        const trapXY =setTrapXY();
+                        createBonusPoint(trapXY[0], trapXY[1]);
+                    }
                 }
-
+                gameScore = traps.length - trapsStart + bonusGameScore+10; //score
+                score.innerHTML = `Score ${gameScore}`;
             }
             //hitboxes
             if (traps[i].offsetTop < playerCharacter.offsetTop + 32 &&
@@ -62,7 +70,25 @@
                 });
                 document.removeEventListener('keydown', listeners);
             } //hitbox if
-        } //for
+        } //for new traps, bonus points
+        if(gameScore>10){
+            for(let i=0;i<bonusPoints.length;i++){
+                if(bonusPoints[i].offsetTop < 20){   
+                    document.body.removeChild(bonusPoints[i]);
+                    bonusPoints.splice(i, 1);
+                    break;
+                }//if bonusPoint is invisible
+                if (bonusPoints[i].offsetTop < playerCharacter.offsetTop + 32 &&
+                    bonusPoints[i].offsetTop > playerCharacter.offsetTop - 32 &&
+                    bonusPoints[i].offsetLeft < playerCharacter.offsetLeft + 32 &&
+                    bonusPoints[i].offsetLeft > playerCharacter.offsetLeft - 32
+                ){
+                    bonusGameScore+=1;
+                    document.body.removeChild(bonusPoints[i]);
+                    bonusPoints.splice(i, 1);
+                }//if hitbox bonusPoint
+            }
+        }//if gamescore>10
     } //losewin
 
     function moveUp() { //"dev" function :D           
@@ -70,6 +96,9 @@
             setInterval(function () {
                 traps.forEach(trap => {
                     trap.style.top = `${trap.offsetTop+moveLength}px`;
+                });
+                bonusPoints.forEach(point => {
+                    point.style.top = `${point.offsetTop+moveLength}px`;
                 });
                 loseWin();
             }, intervalTime)
@@ -80,6 +109,9 @@
             setInterval(function () {
                 traps.forEach(trap => {
                     trap.style.top = `${trap.offsetTop-moveLength}px`;
+                });
+                bonusPoints.forEach(point => {
+                    point.style.top = `${point.offsetTop-moveLength}px`;
                 });
                 loseWin();
             }, intervalTime)
@@ -92,6 +124,10 @@
                     trap.style.top = `${trap.offsetTop-moveLength}px`;
                     trap.style.left = `${trap.offsetLeft-moveLength}px`;
                 });
+                bonusPoints.forEach(point => {
+                    point.style.top = `${point.offsetTop-moveLength}px`;
+                    point.style.left = `${point.offsetLeft-moveLength}px`;
+                });
                 loseWin();
             }, intervalTime)
     }
@@ -102,6 +138,10 @@
                 traps.forEach(trap => {
                     trap.style.top = `${trap.offsetTop-moveLength}px`;
                     trap.style.left = `${trap.offsetLeft+moveLength}px`;
+                });
+                bonusPoints.forEach(point => {
+                    point.style.top = `${point.offsetTop-moveLength}px`;
+                    point.style.left = `${point.offsetLeft+moveLength}px`;
                 });
                 loseWin();
             }, intervalTime)
@@ -119,6 +159,19 @@
         document.body.appendChild(treeTrap);
         //pushing trap to array
         traps.push(treeTrap);
+    }
+
+    function createBonusPoint(trapX, trapY) {
+        const bonusPoint = document.createElement('div');
+        bonusPoint.className = "bonusPoints";
+        bonusPoint.id = "bonusPoint";
+        bonusPoint.style.left = `${trapX}px`;
+        bonusPoint.style.top = `${trapY}px`;
+        bonusPoint.style.backgroundImage = "url('./assets/point.png')";
+        //create trap
+        document.body.appendChild(bonusPoint);
+        //pushing bonusPoint to array
+        bonusPoints.push(bonusPoint);
     }
 
     function clearIntervals() { //"dev" function :D   
