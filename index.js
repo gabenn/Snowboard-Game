@@ -35,7 +35,7 @@
                 traps[i].style.top = `${trapXY[1]}px`; // setting trap y coordinate
 
                 if (traps[traps.length - 1].offsetTop < 20) {
-                    createTrap(trapXY[0], trapXY[0]); // adding new element after "win"
+                    createTrap(trapXY[0], trapXY[1]); // adding new element after "win"
                     gameScore = traps.length - trapsStart; //score
                     score.innerHTML = `Score ${gameScore}`;
                 }
