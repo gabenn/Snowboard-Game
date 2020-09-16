@@ -46,7 +46,7 @@
                         createBonusPoint(trapXY[0], trapXY[1]);
                     }
                 }
-                gameScore = traps.length - trapsStart + bonusGameScore+10; //score
+                gameScore = traps.length - trapsStart + bonusGameScore; //score
                 score.innerHTML = `Score ${gameScore}`;
             }
             //hitboxes
