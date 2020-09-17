@@ -43,6 +43,8 @@
                     
                     if (gameScore > 10) {
                         const trapXY =setTrapXY();
+                        if(trapXY[0]<window.innerWidth*0.2)trapXY[0]+=400;
+                        if(trapXY[0]>window.innerWidth*0.8)trapXY[0]-=400;
                         createBonusPoint(trapXY[0], trapXY[1]);
                     }
                 }
