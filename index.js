@@ -84,6 +84,8 @@
                     bonusPoints[i].offsetLeft > playerCharacter.offsetLeft - 32
                 ){
                     bonusGameScore+=1;
+                    gameScore = traps.length - trapsStart + bonusGameScore;
+                    score.innerHTML = `Score ${gameScore}`;
                     document.body.removeChild(bonusPoints[i]);
                     bonusPoints.splice(i, 1);
                 }//if hitbox bonusPoint
