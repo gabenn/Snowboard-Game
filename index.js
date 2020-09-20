@@ -7,7 +7,8 @@
     const favIcon = document.querySelector("#favIcon");
     const playerCharacter = document.querySelector("#playerCharacter");
     const score = document.querySelector("#score");
-    //modals
+    const gameBackground =document.querySelector("#gameBackground")
+    //modal
     const modalBox = document.querySelector(".modalBox");
     const modalHighScore = document.querySelector("#modalHighScore");
     const modalScore = document.querySelector("#modalScore");
@@ -41,17 +42,16 @@
                 if (traps[traps.length - 1].offsetTop < 20) {
                     createTrap(trapXY[0], trapXY[1]); // adding new element after "win"
                     
-                    if (gameScore > 10) {
+                    if (gameScore > 5) {
                         const trapXY =setTrapXY();
                         if(trapXY[0]<window.innerWidth*0.2)trapXY[0]+=400;
                         if(trapXY[0]>window.innerWidth*0.8)trapXY[0]-=400;
                         createBonusPoint(trapXY[0], trapXY[1]);
                     }
-                }
+                }//if(traps[traps.length - 1].offsetTop < 20)
                 gameScore = traps.length - trapsStart + bonusGameScore; //score
                 score.innerHTML = `Score ${gameScore}`;
-            }
-            //hitboxes
+            }//if (traps[i].offsetTop < 0)
             if (traps[i].offsetTop < playerCharacter.offsetTop + 32 &&
                 traps[i].offsetTop > playerCharacter.offsetTop - 32 &&
                 traps[i].offsetLeft < playerCharacter.offsetLeft + 32 &&
@@ -65,15 +65,11 @@
                     modalHighScore.value = localStorage.getItem('highScoreLS');
                     modalScore.value = gameScore;
                 }, 500);
-                document.addEventListener("keydown", (e) => {
-                    if (e.key = "Enter") {
-                        location.reload();
-                    }
-                });
                 document.removeEventListener('keydown', listeners);
+                           
             } //hitbox if
         } //for new traps, bonus points
-        if(gameScore>10){
+        if(gameScore>5){
             for(let i=0;i<bonusPoints.length;i++){
                 if(bonusPoints[i].offsetTop < 20){   
                     document.body.removeChild(bonusPoints[i]);
@@ -92,10 +88,10 @@
                     bonusPoints.splice(i, 1);
                 }//if hitbox bonusPoint
             }
-        }//if gamescore>10
+        }//if gamescore>5
     } //losewin
 
-    function moveUp() { //"dev" function :D           
+    function moveUp() {      
         intervalUp =
             setInterval(function () {
                 traps.forEach(trap => {
@@ -119,6 +115,7 @@
                 });
                 loseWin();
             }, intervalTime)
+
     }
 
     function moveRight() {
@@ -178,15 +175,11 @@
         bonusPoints.push(bonusPoint);
     }
 
-    function clearIntervals() { //"dev" function :D   
+    function clearIntervals() {
         clearInterval(intervalDown);
         clearInterval(intervalRight);
         clearInterval(intervalLeft);
         clearInterval(intervalUp);
-    }
-
-    function usingDevFunction() {
-        console.log("Dont be cheater. Dont use dev functions");
     }
     const listeners = (e) => {
         if (e.key == " ") { //space stop game

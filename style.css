@@ -4,11 +4,13 @@
     margin: 0;
     padding: 0;
 }
-html{
+
+html {
     width: 100vw;
     height: 100vh;
-    overflow:hidden;
+    overflow: hidden;
 }
+
 #gameBackground {
     position: absolute;
     width: 100vw;
@@ -39,45 +41,49 @@ html{
 h1 {
     background: white;
 }
-.traps
-{
+
+.traps {
     position: absolute;
     z-index: 1;
 }
-#deadTree
-{
+
+#deadTree {
     width: 64px;
     height: 32px;
 }
-.modalBox{
-    position:absolute;
-    
+
+.modalBox {
+    position: absolute;
+
     width: 450px;
     height: 600px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 
     z-index: -3;
 
     background: rgb(173, 216, 230);
 
     text-align: center;
-    
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
-.modalScore{
-    
+
+.modalScore {
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-bottom: 50px;
 }
-.modalText{
+
+.modalText {
     font-size: 24pt;
 }
-.modalInputText{
+
+.modalInputText {
     background: white;
 
     width: 350px;
@@ -85,24 +91,26 @@ h1 {
     margin-left: 50px;
     margin-right: 50px;
 
-    border-top-left-radius:10px;
-    border-top-right-radius:10px ;
-    border-bottom-right-radius:10px ;
-    border-bottom-left-radius:10px ;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 
     text-align: center;
 }
-.modalPlay{
+
+.modalPlay {
     width: 100px;
     height: 100px;
     background-color: lightskyblue;
-
 }
-.modalHeader{
+
+.modalHeader {
     margin-top: 20px;
     margin-bottom: 100px;
 }
-.modalFooter{
+
+.modalFooter {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -114,14 +122,16 @@ h1 {
     text-align: center;
     transform: translateX(-50%);
 }
-.githubIcon{
+
+.githubIcon {
     position: absolute;
     height: 32px;
     width: 32px;
     background: url("./assets/githubIcon.png");
     transform: translate(-50%, -50%);
 }
-.bonusPoints{
+
+.bonusPoints {
     position: absolute;
     height: 32px;
     width: 32px;
