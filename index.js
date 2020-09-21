@@ -23,6 +23,7 @@
     const trapsStart = 40;
     let gameScore = 0;
     let bonusGameScore=0
+    let jumpQuantity=3;
     //intervals
     let intervalLeft, intervalDown, intervalRight, intervalUp;
 
@@ -148,6 +149,25 @@
             }, intervalTime)
     }
 
+    function jump(){
+        if(jumpQuantity<6){
+            jumpQuantity-=1;
+            for(let i=0;i<50;i++){
+                    traps.forEach(trap => {
+                        setTimeout(()=>{
+                            trap.style.top = `${trap.offsetTop-moveLength}px`;
+                        },intervalTime)
+                    });
+                    bonusPoints.forEach(point => {
+                        setTimeout(()=>{
+                            point.style.top = `${point.offsetTop-moveLength}px`;
+                        },intervalTime)
+                    });
+            }
+        }
+        moveDown();
+    }
+
     function createTrap(trapX, trapY) {
         // trap styles
         const treeTrap = document.createElement('div');
@@ -214,6 +234,10 @@
             moveDown();
             playerCharacter.style.backgroundImage = `url("${playerDown}")`;
             favIcon.href = playerDown;
+        }
+        if(e.key=='Shift'){
+            clearIntervals();
+            jump();
         }
     }
 
