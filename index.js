@@ -150,7 +150,7 @@
     }
 
     function jump(){
-        if(jumpQuantity<6){
+        if(jumpQuantity>0){
             jumpQuantity-=1;
             for(let i=0;i<50;i++){
                     traps.forEach(trap => {
