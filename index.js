@@ -6,7 +6,7 @@
     //DOM
     const favIcon = document.querySelector("#favIcon");
     const playerCharacter = document.querySelector("#playerCharacter");
-    const score = document.querySelector("#score");
+    const scoreBox = document.querySelector("#scoreBox");
     const gameBackground =document.querySelector("#gameBackground")
     //modal
     const modalBox = document.querySelector(".modalBox");
@@ -40,7 +40,7 @@
                 traps[i].style.left = `${trapXY[0]}px`; // setting trap x coordinate
                 traps[i].style.top = `${trapXY[1]}px`; // setting trap y coordinate
 
-                if (traps[traps.length - 1].offsetTop < 20) {
+                if (traps[traps.length - 1].offsetTop < 50) {
                     createTrap(trapXY[0], trapXY[1]); // adding new element after "win"
                     
                     if (gameScore > 5) {
@@ -51,7 +51,7 @@
                     }
                 }//if(traps[traps.length - 1].offsetTop < 20)
                 gameScore = traps.length - trapsStart + bonusGameScore; //score
-                score.innerHTML = `Score ${gameScore}`;
+                scoreBox.innerHTML = `Score ${gameScore}`;
             }//if (traps[i].offsetTop < 0)
             if (traps[i].offsetTop < playerCharacter.offsetTop + 32 &&
                 traps[i].offsetTop > playerCharacter.offsetTop - 32 &&
@@ -84,7 +84,7 @@
                 ){
                     bonusGameScore+=1;
                     gameScore = traps.length - trapsStart + bonusGameScore;
-                    score.innerHTML = `Score ${gameScore}`;
+                    scoreBox.innerHTML = `Score ${gameScore}`;
                     document.body.removeChild(bonusPoints[i]);
                     bonusPoints.splice(i, 1);
                 }//if hitbox bonusPoint
