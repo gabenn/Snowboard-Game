@@ -7,12 +7,11 @@
     const favIcon = document.querySelector("#favIcon");
     const playerCharacter = document.querySelector("#playerCharacter");
     const scoreBox = document.querySelector("#scoreBox");
-    const gameBackground =document.querySelector("#gameBackground")
+    const jumpCounter = document.querySelector("#jumpCounter");
     //modal
     const modalBox = document.querySelector(".modalBox");
     const modalHighScore = document.querySelector("#modalHighScore");
     const modalScore = document.querySelector("#modalScore");
-    const modalPlay = document.querySelector(".modalPlay");
     //arrays
     const traps = [];
     const bonusPoints = [];
@@ -22,8 +21,8 @@
     const prodMode = false;
     const trapsStart = 40;
     let gameScore = 0;
-    let bonusGameScore=0
-    let jumpQuantity=3;
+    let bonusGameScore = 0
+    let jumpQuantity = 3;
     //intervals
     let intervalLeft, intervalDown, intervalRight, intervalUp;
 
@@ -42,17 +41,17 @@
 
                 if (traps[traps.length - 1].offsetTop < 50) {
                     createTrap(trapXY[0], trapXY[1]); // adding new element after "win"
-                    
+
                     if (gameScore > 5) {
-                        const trapXY =setTrapXY();
-                        if(trapXY[0]<window.innerWidth*0.2)trapXY[0]+=400;
-                        if(trapXY[0]>window.innerWidth*0.8)trapXY[0]-=400;
+                        const trapXY = setTrapXY();
+                        if (trapXY[0] < window.innerWidth * 0.2) trapXY[0] += 400;
+                        if (trapXY[0] > window.innerWidth * 0.8) trapXY[0] -= 400;
                         createBonusPoint(trapXY[0], trapXY[1]);
                     }
-                }//if(traps[traps.length - 1].offsetTop < 20)
+                } 
                 gameScore = traps.length - trapsStart + bonusGameScore; //score
                 scoreBox.innerHTML = `Score ${gameScore}`;
-            }//if (traps[i].offsetTop < 0)
+            } 
             if (traps[i].offsetTop < playerCharacter.offsetTop + 32 &&
                 traps[i].offsetTop > playerCharacter.offsetTop - 32 &&
                 traps[i].offsetLeft < playerCharacter.offsetLeft + 32 &&
@@ -67,32 +66,32 @@
                     modalScore.value = gameScore;
                 }, 500);
                 document.removeEventListener('keydown', listeners);
-                           
-            } //hitbox if
-        } //for new traps, bonus points
-        if(gameScore>5){
-            for(let i=0;i<bonusPoints.length;i++){
-                if(bonusPoints[i].offsetTop < 20){   
+
+            } //end of hitbox if
+        } //end of for new traps, bonus points
+        if (gameScore > 5) {
+            for (let i = 0; i < bonusPoints.length; i++) {
+                if (bonusPoints[i].offsetTop < 20) {
                     document.body.removeChild(bonusPoints[i]);
                     bonusPoints.splice(i, 1);
                     break;
-                }//if bonusPoint is invisible
+                } //end of if bonusPoint is invisible
                 if (bonusPoints[i].offsetTop < playerCharacter.offsetTop + 32 &&
                     bonusPoints[i].offsetTop > playerCharacter.offsetTop - 32 &&
                     bonusPoints[i].offsetLeft < playerCharacter.offsetLeft + 32 &&
                     bonusPoints[i].offsetLeft > playerCharacter.offsetLeft - 32
-                ){
-                    bonusGameScore+=1;
+                ) {
+                    bonusGameScore += 1;
                     gameScore = traps.length - trapsStart + bonusGameScore;
                     scoreBox.innerHTML = `Score ${gameScore}`;
                     document.body.removeChild(bonusPoints[i]);
                     bonusPoints.splice(i, 1);
-                }//if hitbox bonusPoint
+                } //end of if hitbox bonusPoint
             }
-        }//if gamescore>5
-    } //losewin
+        } //end of if gamescore>5
+    } //end of losewin
 
-    function moveUp() {      
+    function moveUp() {
         intervalUp =
             setInterval(function () {
                 traps.forEach(trap => {
@@ -149,27 +148,28 @@
             }, intervalTime)
     }
 
-    function jump(){
-        if(jumpQuantity>0){
-            jumpQuantity-=1;
-            for(let i=0;i<50;i++){
-                    traps.forEach(trap => {
-                        setTimeout(()=>{
-                            trap.style.top = `${trap.offsetTop-moveLength}px`;
-                        },intervalTime)
-                    });
-                    bonusPoints.forEach(point => {
-                        setTimeout(()=>{
-                            point.style.top = `${point.offsetTop-moveLength}px`;
-                        },intervalTime)
-                    });
+    function jump() {
+        if (jumpQuantity > 0) {
+            jumpQuantity -= 1;
+            for (let i = 0; i < 50; i++) {
+                traps.forEach(trap => {
+                    setTimeout(() => {
+                        trap.style.top = `${trap.offsetTop-moveLength}px`;
+                    }, intervalTime)
+                });
+                bonusPoints.forEach(point => {
+                    setTimeout(() => {
+                        point.style.top = `${point.offsetTop-moveLength}px`;
+                    }, intervalTime)
+                });
             }
         }
+        scoreBox.textContent = jumpQuantity;
         moveDown();
     }
 
     function createTrap(trapX, trapY) {
-        // trap styles
+        //create trap
         const treeTrap = document.createElement('div');
         treeTrap.className = "traps";
         treeTrap.id = "deadTree";
@@ -235,7 +235,7 @@
             playerCharacter.style.backgroundImage = `url("${playerDown}")`;
             favIcon.href = playerDown;
         }
-        if(e.key=='Shift'){
+        if (e.key == 'Shift') {
             clearIntervals();
             jump();
         }
