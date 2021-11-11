@@ -48,10 +48,10 @@
                         if (trapXY[0] > window.innerWidth * 0.8) trapXY[0] -= 400;
                         createBonusPoint(trapXY[0], trapXY[1]);
                     }
-                } 
+                }
                 gameScore = traps.length - trapsStart + bonusGameScore; //score
                 scoreBox.innerHTML = `Score ${gameScore}`;
-            } 
+            }
             if (traps[i].offsetTop < playerCharacter.offsetTop + 32 &&
                 traps[i].offsetTop > playerCharacter.offsetTop - 32 &&
                 traps[i].offsetLeft < playerCharacter.offsetLeft + 32 &&
